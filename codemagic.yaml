@@ -1,0 +1,15 @@
+workflows:
+  ios-debug-workflow:
+    name: iOS Debug Build
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Flutter build ipa (Debug)
+        script: flutter build ipa --debug --no-codesign
+    artifacts:
+      - build/ios/ipa/*.ipa
